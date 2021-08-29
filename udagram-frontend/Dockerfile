@@ -8,8 +8,7 @@ COPY package*.json ./
 RUN npm ci
 # Bundle app source
 COPY . .
-RUN ionic build
-## Run 
-FROM nginx:alpine
-#COPY www /usr/share/nginx/html
-COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
+# Bind the port that the image will run on
+EXPOSE 80
+# Define the Docker image's behavior at runtime
+CMD ["npm", "run", "start"]
