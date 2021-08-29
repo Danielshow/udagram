@@ -4,14 +4,12 @@ import {sequelize} from './sequelize';
 
 import {IndexRouter} from './controllers/v0/index.router';
 
-import bodyParser from 'body-parser';
 import {config} from './config/config';
-import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
+import {V0_FEED_MODELS} from './controllers/v0/model.index';
 
 
 (async () => {
   await sequelize.addModels(V0_FEED_MODELS);
-  await sequelize.addModels(V0_USER_MODELS);
 
   console.debug("Initialize database connection...");
   await sequelize.sync();
@@ -19,7 +17,7 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
   const app = express();
   const port = process.env.PORT || 8080;
 
-  app.use(bodyParser.json());
+  app.use(express.json());
 
   // We set the CORS origin to * so that we don't need to
   // worry about the complexities of CORS this lesson. It's
@@ -45,7 +43,7 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
 
   // Start the Server
   app.listen( port, () => {
-    console.log( `server running ${config.url}` );
+    console.log( `Udagram API Server running ${port}` );
     console.log( `press CTRL+C to stop server` );
   } );
 })();
