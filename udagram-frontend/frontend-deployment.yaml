@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: danielshow/udagram-frontend:v2
+        image: danielshow/udagram-frontend:v4
         ports:
         - containerPort: 80
